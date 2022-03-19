@@ -18,6 +18,11 @@ public class Castle : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
+
+        healthBar.minValue = 0;
+        healthBar.maxValue = maxHealth;
+        healthBar.value = maxHealth;
+
         healthText.text = currentHealth.ToString();
     }
 

@@ -8,7 +8,7 @@ public class Monster : MonoBehaviour
 
     public GameObject target, monsterTarget;
     public float maxHealth, currentHealth, atkSpeed, moveSpeed;
-    public int level;
+    public int level, atkValue;
 
     public Slider healthBar;
 
@@ -25,7 +25,8 @@ public class Monster : MonoBehaviour
     private void Init()
     {
         atkSpeed = 0.5f * level;
-        moveSpeed = 0.5f * level;
+        atkValue = 3;
+        moveSpeed = 0.5f * level * 5;
         maxHealth = 5 * level;
 
         target = GameObject.FindGameObjectWithTag("Castle");
@@ -89,4 +90,14 @@ public class Monster : MonoBehaviour
         }
 
     }
+
+    public void Attack()
+    {
+        if (target.tag.Equals("Castle"))
+        {
+            target.GetComponent<Castle>().TakeDamage(atkValue);
+        }
+    }
+
+    
 }

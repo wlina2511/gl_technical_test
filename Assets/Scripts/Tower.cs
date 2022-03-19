@@ -18,6 +18,11 @@ public class Tower : MonoBehaviour {
     public Animator anim_2;  
     private float homeY;
 
+    public GameObject slot;
+
+
+    public bool isFollowingMouse;
+
     
 
     void Start()
@@ -29,41 +34,61 @@ public class Tower : MonoBehaviour {
 
     void Update () {
 
-        
-        // Tower`s rotate
-
-        if (target)
-        {  
-            
-            Vector3 dir = target.transform.position - LookAtObj.transform.position;
-                dir.y = 0; 
-                Quaternion rot = Quaternion.LookRotation(dir);                
-                LookAtObj.transform.rotation = Quaternion.Slerp( LookAtObj.transform.rotation, rot, 5 * Time.deltaTime);
-
-        }
-      
-        else
+        if (!isFollowingMouse)
         {
-            
-            Quaternion home = new Quaternion (0, homeY, 0, 1);
-            
-            LookAtObj.transform.rotation = Quaternion.Slerp(LookAtObj.transform.rotation, home, Time.deltaTime);                        
-        }
+            // Tower`s rotate
+
+            if (target)
+            {
+
+                Vector3 dir = target.transform.position - LookAtObj.transform.position;
+                dir.y = 0;
+                Quaternion rot = Quaternion.LookRotation(dir);
+                LookAtObj.transform.rotation = Quaternion.Slerp(LookAtObj.transform.rotation, rot, 5 * Time.deltaTime);
+
+            }
+
+            else
+            {
+
+                Quaternion home = new Quaternion(0, homeY, 0, 1);
+
+                LookAtObj.transform.rotation = Quaternion.Slerp(LookAtObj.transform.rotation, home, Time.deltaTime);
+            }
 
 
-        // Shooting
-               
+            // Shooting
+
 
             if (!isShoot)
             {
                 StartCoroutine(shoot());
 
             }
-                    
-       
-
-
-
+        }
+        else
+        {
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit))
+            {
+                // Do something with the object that was hit by the raycast.
+                //this.transform.position = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, 0, Camera.main.ScreenToWorldPoint(Input.mousePosition).z);
+                transform.position = hit.point;
+                if (hit.transform.tag.Equals("Slot"))
+                {
+                    if (Input.GetMouseButton(0))
+                    {
+                        transform.position = hit.transform.position;
+                        isFollowingMouse = false;
+                        foreach (GameObject g in GameManager.Instance.slots)
+                        {
+                            g.GetComponent<MeshRenderer>().material.color = Color.gray;
+                        }
+                    }
+                }
+            }
+        }
     }
 
 	IEnumerator shoot()

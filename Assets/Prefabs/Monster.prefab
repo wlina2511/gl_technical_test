@@ -115,9 +115,23 @@ MonoBehaviour:
   currentHealth: 0
   atkSpeed: 0
   moveSpeed: 0
+  atkValue: 0
   level: 1
   healthBar: {fileID: 1031689430336227545}
   anim: {fileID: 7182132871967868570}
+--- !u!114 &4519404874011390782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7132650205713383432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 623246239d52fe94f94a0ff7e4abae15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monster: {fileID: 3465915770109536512}
 --- !u!1001 &6775991788493683784
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -343,6 +357,12 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 135975656248482850, guid: 3749b9edee740c44ea7455a4fa1b7382, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3749b9edee740c44ea7455a4fa1b7382, type: 3}
+--- !u!1 &7132650205713383432 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1258991314359982, guid: 3749b9edee740c44ea7455a4fa1b7382,
+    type: 3}
+  m_PrefabInstance: {fileID: 7131514441307821734}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7127340497817375960 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4887270080479870, guid: 3749b9edee740c44ea7455a4fa1b7382,

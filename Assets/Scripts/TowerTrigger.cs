@@ -11,40 +11,49 @@ public class TowerTrigger : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
 	{
-		if(other.CompareTag("MonsterTarget") && !lockE)
-		{   
-			twr.target = other.gameObject.transform;            
-            curTarget = other.gameObject;
-			lockE = true;
-		}
+        if (!twr.isFollowingMouse)
+        {
+            if (other.CompareTag("MonsterTarget") && !lockE)
+            {
+                twr.target = other.gameObject.transform;
+                curTarget = other.gameObject;
+                lockE = true;
+            }
+        }
+		
        
     }
 	void Update()
 	{
-        if (curTarget)
+        if (!twr.isFollowingMouse)
         {
-            if (curTarget.CompareTag("Dead"))
+            if (curTarget)
+            {
+                if (curTarget.CompareTag("Dead"))
+                {
+                    lockE = false;
+                    twr.target = null;
+                }
+            }
+            if (!curTarget)
             {
                 lockE = false;
-                twr.target = null;               
             }
-        }
-
-
-
-
-        if (!curTarget) 
-		{
-			lockE = false;            
-        }
+        }     
 	}
+
+
 	void OnTriggerExit(Collider other)
 	{
-		if(other.CompareTag("MonsterTarget") && other.gameObject == curTarget)
-		{
-			lockE = false;
-            twr.target = null;            
+        if (!twr.isFollowingMouse)
+        {
+            if (other.CompareTag("MonsterTarget") && other.gameObject == curTarget)
+            {
+                lockE = false;
+                twr.target = null;
+            }
         }
+		
 	}
 	
 }
