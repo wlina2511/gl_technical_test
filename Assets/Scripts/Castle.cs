@@ -1,0 +1,40 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class Castle : MonoBehaviour
+{
+
+    public int maxHealth, currentHealth;
+
+    public Slider healthBar;
+
+    public TextMeshProUGUI healthText;
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        currentHealth = maxHealth;
+        healthText.text = currentHealth.ToString();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    public void TakeDamage(int amount)
+    {
+        currentHealth -= amount;
+        healthBar.value = currentHealth;
+        healthText.text = currentHealth.ToString();
+        if (amount > currentHealth)
+        {
+           // dead
+        }
+    }
+}

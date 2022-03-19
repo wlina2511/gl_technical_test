@@ -6,11 +6,15 @@ using UnityEngine.UI;
 public class Monster : MonoBehaviour
 {
 
-    public GameObject target;
+    public GameObject target, monsterTarget;
     public float maxHealth, currentHealth, atkSpeed, moveSpeed;
     public int level;
 
     public Slider healthBar;
+
+
+    public Animator anim;
+
 
     // Start is called before the first frame update
     void Start()
@@ -64,6 +68,25 @@ public class Monster : MonoBehaviour
 
     public void Die()
     {
+        
         gameObject.SetActive(false);
+        monsterTarget.tag = "Dead";
+    }
+
+    void OnTriggerEnter(Collider other)
+
+    {
+        if (other.tag == "Castle")
+        {
+
+            moveSpeed = 0;
+            target = other.gameObject;
+            Vector3 targetPosition = new Vector3(target.transform.position.x, transform.position.y,target.transform.position.z);
+            //transform.LookAt(targetPosition);
+            anim.SetBool("RUN", false);
+            anim.SetBool("Attack", true);
+
+        }
+
     }
 }

@@ -36,7 +36,7 @@ public class Spawner : MonoBehaviour
     private void Spawn(Vector3 pos, int level)
     {
         GameObject monster = Instantiate(monsterPrefab, pos, Quaternion.identity);
-        monster.transform.position = monster.transform.position + new Vector3(0, monster.transform.localScale.y, 0);
+        monster.transform.position = monster.transform.position + new Vector3(0, monster.transform.localScale.y/2, 0);
         monster.GetComponent<Monster>().level = level;
     }
 }
