@@ -20,13 +20,17 @@ public class Tower : MonoBehaviour {
 
     public GameObject slot;
 
+    public Material defaultMat;
 
     public bool isFollowingMouse;
+
+    public int cost;
 
     
 
     void Start()
     {
+        
     }
          
     
@@ -62,7 +66,7 @@ public class Tower : MonoBehaviour {
 
             if (!isShoot)
             {
-                StartCoroutine(shoot());
+                StartCoroutine(Shoot());
 
             }
         }
@@ -75,23 +79,42 @@ public class Tower : MonoBehaviour {
                 // Do something with the object that was hit by the raycast.
                 //this.transform.position = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, 0, Camera.main.ScreenToWorldPoint(Input.mousePosition).z);
                 transform.position = hit.point;
-                if (hit.transform.tag.Equals("Slot"))
+                if (Input.GetMouseButton(0))
                 {
-                    if (Input.GetMouseButton(0))
+                    if (hit.transform.tag.Equals("Slot"))
                     {
+
                         transform.position = hit.transform.position;
+                        slot = hit.transform.gameObject;
                         isFollowingMouse = false;
+                        GetComponent<BoxCollider>().enabled = true;
+
                         foreach (GameObject g in GameManager.Instance.slots)
                         {
                             g.GetComponent<MeshRenderer>().material.color = Color.gray;
                         }
+                        GameManager.Instance.ChangeGold(-cost);
                     }
+                    else if (hit.transform.tag.Equals("Tower"))
+                    {
+                        hit.transform.gameObject.GetComponent<Tower>().Merge();
+                        Destroy(gameObject);
+
+                        foreach (GameObject g in GameManager.Instance.slots)
+                        {
+                            g.GetComponent<MeshRenderer>().material.color = Color.gray;
+                        }
+                        GameManager.Instance.ChangeGold(-cost);
+                    }
+
+                    
                 }
+                
             }
         }
     }
 
-	IEnumerator shoot()
+	IEnumerator Shoot()
 	{
 		isShoot = true;
 		yield return new WaitForSeconds(shootDelay);
@@ -108,6 +131,17 @@ public class Tower : MonoBehaviour {
 
         isShoot = false;
 	}
+
+    public void Merge()
+    {
+        //Material mat = defaultMat;
+        //mat.color = Color.red;
+        transform.localScale *= 1.2f;
+        foreach(MeshRenderer m in transform.GetChild(0).GetComponentsInChildren<MeshRenderer>())
+        {
+            m.material.color = Color.red;
+        }
+    }
               
 
 }

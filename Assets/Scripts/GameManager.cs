@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,17 +9,34 @@ public class GameManager : MonoBehaviour
 
 
     public GameObject[] slots;
+    public TowerButtons[] towerButtons;
+
+    public int goldAmount;
+    public int playerLevel;
+
+
+    public int refreshCost, levelUpCost;
 
     public static GameManager Instance;
-    void Start()
+    void Awake()
     {
         Instance = this;
-        slots = GameObject.FindGameObjectsWithTag("Slot");
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void LevelUp()
+    {
+        playerLevel += 1;
+    }
+
+    public void ChangeGold(int amount)
+    {
+        goldAmount += amount;
+        GameCanvas.Instance.UpdateGold();
     }
 }

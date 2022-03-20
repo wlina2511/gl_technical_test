@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2163276822608146093}
   - component: {fileID: 2163276822608146094}
   m_Layer: 5
-  m_Name: Image
+  m_Name: TowerImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86,8 +86,9 @@ GameObject:
   - component: {fileID: 2163276823168183563}
   - component: {fileID: 2163276823168183564}
   - component: {fileID: 2163276823168183565}
+  - component: {fileID: 2024125901}
   m_Layer: 5
-  m_Name: Button
+  m_Name: BuyTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -194,7 +195,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2024125901}
         m_MethodName: AddTower
         m_Mode: 1
         m_Arguments:
@@ -205,6 +206,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2024125901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2163276823168183567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86d5cb1a60dbaf749913300f14f5fbbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tower: {fileID: 1674050128692650, guid: 997eda0f844715845a30121b4553e2fd, type: 3}
+  costText: {fileID: 2163276823596934564}
 --- !u!1 &2163276823596934566
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,7 +232,7 @@ GameObject:
   - component: {fileID: 2163276823596934563}
   - component: {fileID: 2163276823596934564}
   m_Layer: 5
-  m_Name: Text
+  m_Name: TowerCostText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -296,7 +311,7 @@ GameObject:
   - component: {fileID: 2163276824569319995}
   - component: {fileID: 2163276824569319996}
   m_Layer: 5
-  m_Name: Image
+  m_Name: GoldImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

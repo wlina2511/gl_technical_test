@@ -69,8 +69,7 @@ public class Monster : MonoBehaviour
 
     public void Die()
     {
-        
-        gameObject.SetActive(false);
+        StartCoroutine(DieCoroutine());
         monsterTarget.tag = "Dead";
     }
 
@@ -99,5 +98,12 @@ public class Monster : MonoBehaviour
         }
     }
 
+    IEnumerator DieCoroutine()
+    {
+        moveSpeed = 0;
+        healthBar.gameObject.SetActive(false);
+        anim.SetBool("Death", true);
+        yield return new WaitForSeconds(1.0f);
+    }
     
 }

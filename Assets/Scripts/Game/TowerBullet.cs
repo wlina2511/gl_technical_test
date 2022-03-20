@@ -53,6 +53,7 @@ public class TowerBullet : MonoBehaviour {
 
     void OnTriggerEnter (Collider other) // tower`s hit if bullet reached the enemy
     {
+        StartCoroutine(DestroyAnyways());
         if(other.gameObject.transform == target)
         {
             target.transform.parent.parent.GetComponent<Monster>().TakeDamage(twr.dmg);
@@ -62,6 +63,12 @@ public class TowerBullet : MonoBehaviour {
             Destroy(impactParticle, 3);
             return;  
         }
+    }
+
+    IEnumerator DestroyAnyways()
+    {
+        yield return new WaitForSeconds(1.0f);
+        Destroy(gameObject);
     }
  
 }

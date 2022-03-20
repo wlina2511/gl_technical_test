@@ -9,6 +9,7 @@ TagManager:
   - Dead
   - enemyBug
   - Slot
+  - Tower
   layers:
   - Default
   - TransparentFX
