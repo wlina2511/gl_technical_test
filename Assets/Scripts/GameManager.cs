@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     public int goldAmount;
     public int playerLevel;
 
+    public float dps;
+
 
     public int refreshCost, levelUpCost;
 
@@ -32,11 +34,24 @@ public class GameManager : MonoBehaviour
     public void LevelUp()
     {
         playerLevel += 1;
+        GameCanvas.Instance.UpdateLevel();
     }
 
-    public void ChangeGold(int amount)
+    public void UpdateGold(int amount)
     {
         goldAmount += amount;
         GameCanvas.Instance.UpdateGold();
+    }
+
+    public void UpdateDPS()
+    {
+        foreach (GameObject g in slots)
+        {
+            if (g.GetComponent<Slot>().isUsed)
+            {
+                dps += g.GetComponent<Slot>().tower.dmg / g.GetComponent<Slot>().tower.shootDelay;
+            }
+        }
+        GameCanvas.Instance.UpdateDPS();
     }
 }

@@ -18,7 +18,7 @@ public class Tower : MonoBehaviour {
     public Animator anim_2;  
     private float homeY;
 
-    public GameObject slot;
+    public Slot slot;
 
     public Material defaultMat;
 
@@ -85,7 +85,10 @@ public class Tower : MonoBehaviour {
                     {
 
                         transform.position = hit.transform.position;
-                        slot = hit.transform.gameObject;
+                        slot = hit.transform.gameObject.GetComponent<Slot>();
+                        slot.isUsed = true;
+                        slot.tower = this;
+                        transform.parent = slot.transform;
                         isFollowingMouse = false;
                         GetComponent<BoxCollider>().enabled = true;
 
@@ -93,7 +96,8 @@ public class Tower : MonoBehaviour {
                         {
                             g.GetComponent<MeshRenderer>().material.color = Color.gray;
                         }
-                        GameManager.Instance.ChangeGold(-cost);
+                        GameManager.Instance.UpdateGold(-cost);
+                        GameManager.Instance.UpdateDPS();
                     }
                     else if (hit.transform.tag.Equals("Tower"))
                     {
@@ -104,7 +108,8 @@ public class Tower : MonoBehaviour {
                         {
                             g.GetComponent<MeshRenderer>().material.color = Color.gray;
                         }
-                        GameManager.Instance.ChangeGold(-cost);
+                        GameManager.Instance.UpdateGold(-cost);
+                        GameManager.Instance.UpdateDPS();
                     }
 
                     
@@ -137,6 +142,7 @@ public class Tower : MonoBehaviour {
         //Material mat = defaultMat;
         //mat.color = Color.red;
         transform.localScale *= 1.2f;
+        dmg += 3;
         foreach(MeshRenderer m in transform.GetChild(0).GetComponentsInChildren<MeshRenderer>())
         {
             m.material.color = Color.red;

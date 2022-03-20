@@ -103,7 +103,21 @@ public class Monster : MonoBehaviour
         moveSpeed = 0;
         healthBar.gameObject.SetActive(false);
         anim.SetBool("Death", true);
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(1.5f);
+        StartCoroutine(LerpPosition(this.transform.position - new Vector3(0,3,0), 1.0f));
     }
-    
+
+    IEnumerator LerpPosition(Vector3 targetPosition, float duration)
+    {
+        float time = 0;
+        Vector3 startPosition = transform.position;
+        while (time < duration)
+        {
+            transform.position = Vector3.Lerp(startPosition, targetPosition, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        transform.position = targetPosition;
+    }
+
 }

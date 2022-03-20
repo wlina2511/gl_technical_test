@@ -34,7 +34,11 @@ public class TowerButtons : MonoBehaviour
             t.GetComponent<Tower>().cost = towerCost;
             foreach (GameObject g in GameManager.Instance.slots)
             {
-                g.GetComponent<MeshRenderer>().material.color = Color.red;
+                if (!g.GetComponent<Slot>().isUsed)
+                {
+                    g.GetComponent<MeshRenderer>().material.color = Color.red;
+                }
+                
             }
 
             

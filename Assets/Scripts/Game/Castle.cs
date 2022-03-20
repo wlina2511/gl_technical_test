@@ -13,6 +13,8 @@ public class Castle : MonoBehaviour
 
     public TextMeshProUGUI healthText;
 
+    public Animator anim;
+
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +26,7 @@ public class Castle : MonoBehaviour
         healthBar.value = maxHealth;
 
         healthText.text = currentHealth.ToString();
+
     }
 
     // Update is called once per frame
@@ -37,9 +40,12 @@ public class Castle : MonoBehaviour
         currentHealth -= amount;
         healthBar.value = currentHealth;
         healthText.text = currentHealth.ToString();
+
+        anim.SetTrigger("Damage");
+
         if (amount > currentHealth)
         {
-           // dead
+           // Dead
         }
     }
 }

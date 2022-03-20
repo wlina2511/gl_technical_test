@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,8 @@ public class GameCanvas : MonoBehaviour
 {
     public static GameCanvas Instance;
     public Text goldText;
+    public TextMeshProUGUI levelText;
+    public TextMeshProUGUI dpsText;
     // Start is called before the first frame update
 
     private void Awake()
@@ -27,6 +30,16 @@ public class GameCanvas : MonoBehaviour
     public void UpdateGold()
     {
         goldText.text = GameManager.Instance.goldAmount.ToString();
+    }
+
+    public void UpdateLevel()
+    {
+        levelText.text = "Niveau " + GameManager.Instance.playerLevel.ToString();
+    }
+
+    public void UpdateDPS()
+    {
+        dpsText.text = "DPS: " + GameManager.Instance.dps.ToString() + "/s ";
     }
 
     

@@ -24,18 +24,26 @@ public class UIButtons : MonoBehaviour
 
     public void RefreshTowers()
     {
-        GameManager.Instance.ChangeGold(-GameManager.Instance.refreshCost);
-        foreach(TowerButtons t in GameManager.Instance.towerButtons)
+        if (GameManager.Instance.refreshCost < GameManager.Instance.goldAmount)
         {
-            t.ChangeState(true);
+            GameManager.Instance.UpdateGold(-GameManager.Instance.refreshCost);
+            foreach (TowerButtons t in GameManager.Instance.towerButtons)
+            {
+                t.ChangeState(true);
+            }
         }
     }
 
     public void LevelUp()
     {
-        GameManager.Instance.LevelUp();
-        GameManager.Instance.levelUpCost += 2;
-        levelUpText.text = GameManager.Instance.levelUpCost.ToString();
+        if (GameManager.Instance.levelUpCost < GameManager.Instance.goldAmount)
+        {
+            GameManager.Instance.UpdateGold(-GameManager.Instance.levelUpCost);
+            GameManager.Instance.LevelUp();
+            GameManager.Instance.levelUpCost += 2;
+            levelUpText.text = GameManager.Instance.levelUpCost.ToString();
+        }
+        
 
     }
 }
