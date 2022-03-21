@@ -12,6 +12,7 @@ public class Monster : MonoBehaviour
 
     public Slider healthBar;
 
+    public SkinnedMeshRenderer renderer;
 
     public Animator anim;
 
@@ -26,18 +27,23 @@ public class Monster : MonoBehaviour
     {
         atkSpeed = 0.5f * level;
         atkValue = 3;
-        moveSpeed = 0.5f * level * 5;
+        moveSpeed = 10 / level;
         maxHealth = 5 * level;
 
         target = GameObject.FindGameObjectWithTag("Castle");
 
-        transform.localScale *= level * 0.5f;
+        transform.localScale *= 1+ level * 0.5f;
 
         healthBar.minValue = 0;
         healthBar.maxValue = maxHealth;
         healthBar.value = maxHealth;
 
         currentHealth = maxHealth;
+
+        if (level > 3)
+        {
+            renderer.material.color = Color.blue;
+        }
 
 
     }
@@ -71,6 +77,7 @@ public class Monster : MonoBehaviour
     {
         StartCoroutine(DieCoroutine());
         monsterTarget.tag = "Dead";
+        WaveManager.Instance.UpdateMonsterNumber(-1);
     }
 
     void OnTriggerEnter(Collider other)

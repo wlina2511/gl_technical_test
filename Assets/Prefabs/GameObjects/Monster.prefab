@@ -118,6 +118,7 @@ MonoBehaviour:
   level: 1
   atkValue: 0
   healthBar: {fileID: 1031689430336227545}
+  renderer: {fileID: 7138595004842479252}
   anim: {fileID: 7182132871967868570}
 --- !u!114 &4519404874011390782
 MonoBehaviour:
@@ -378,6 +379,12 @@ Animator:
 --- !u!1 &7133062769853317524 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1548466523428658, guid: 3749b9edee740c44ea7455a4fa1b7382,
+    type: 3}
+  m_PrefabInstance: {fileID: 7131514441307821734}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &7138595004842479252 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 137738898347071538, guid: 3749b9edee740c44ea7455a4fa1b7382,
     type: 3}
   m_PrefabInstance: {fileID: 7131514441307821734}
   m_PrefabAsset: {fileID: 0}

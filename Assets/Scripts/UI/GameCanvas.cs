@@ -10,6 +10,8 @@ public class GameCanvas : MonoBehaviour
     public Text goldText;
     public TextMeshProUGUI levelText;
     public TextMeshProUGUI dpsText;
+
+    public TextMeshProUGUI waveText;
     // Start is called before the first frame update
 
     private void Awake()
@@ -40,6 +42,11 @@ public class GameCanvas : MonoBehaviour
     public void UpdateDPS()
     {
         dpsText.text = "DPS: " + GameManager.Instance.dps.ToString() + "/s ";
+    }
+
+    public void UpdateWave()
+    {
+        waveText.text = WaveManager.Instance.waveCurrentNumber + "/" + WaveManager.Instance.waveTotalNumber;
     }
 
     

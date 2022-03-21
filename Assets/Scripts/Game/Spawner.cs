@@ -22,15 +22,15 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentTimeBetweenSpawn > timeBetweenSpawn)
-        {
-            Spawn(spawners[Random.Range(0,spawners.Length)].position, Random.Range(1,maxLevel + 1));
-            currentTimeBetweenSpawn = 0;
-        }
-        else
-        {
-            currentTimeBetweenSpawn += Time.deltaTime;
-        }
+        //if (currentTimeBetweenSpawn > timeBetweenSpawn)
+        //{
+        //    Spawn(spawners[Random.Range(0,spawners.Length)].position, Random.Range(1,maxLevel + 1));
+        //    currentTimeBetweenSpawn = 0;
+        //}
+        //else
+        //{
+        //    currentTimeBetweenSpawn += Time.deltaTime;
+        //}
     }
 
     private void Spawn(Vector3 pos, int level)
@@ -39,4 +39,14 @@ public class Spawner : MonoBehaviour
         monster.transform.position = monster.transform.position + new Vector3(0, monster.transform.localScale.y/2, 0);
         monster.GetComponent<Monster>().level = level;
     }
+
+    public IEnumerator SpawnWave(int numberToSpawn)
+    {
+        for (int i = 0; i < numberToSpawn; i++)
+        {
+            Spawn(spawners[Random.Range(0, spawners.Length)].position, Random.Range(1, maxLevel + 1));
+            yield return new WaitForSeconds(timeBetweenSpawn);
+        }
+    }
+    
 }
