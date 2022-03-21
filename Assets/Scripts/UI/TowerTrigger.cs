@@ -20,10 +20,26 @@ public class TowerTrigger : MonoBehaviour {
                 lockE = true;
             }
         }
-		
-       
     }
-	void Update()
+
+    private void OnTriggerStay(Collider other)
+    {
+        if(twr.target == null)
+        {
+            if (!twr.isFollowingMouse)
+            {
+                if (other.CompareTag("MonsterTarget") && !lockE)
+                {
+                    twr.target = other.gameObject.transform;
+                    curTarget = other.gameObject;
+                    lockE = true;
+                }
+            }
+        }
+        
+    }
+
+    void Update()
 	{
         if (!twr.isFollowingMouse)
         {

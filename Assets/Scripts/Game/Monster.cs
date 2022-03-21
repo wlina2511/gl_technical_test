@@ -16,6 +16,8 @@ public class Monster : MonoBehaviour
 
     public Animator anim;
 
+    public AudioSource audio;
+
 
     // Start is called before the first frame update
     void Start()
@@ -75,6 +77,7 @@ public class Monster : MonoBehaviour
 
     public void Die()
     {
+        audio.PlayOneShot(SoundManager.Instance.monsterDeath);
         StartCoroutine(DieCoroutine());
         monsterTarget.tag = "Dead";
         WaveManager.Instance.UpdateMonsterNumber(-1);
@@ -102,6 +105,7 @@ public class Monster : MonoBehaviour
         if (target.tag.Equals("Castle"))
         {
             target.GetComponent<Castle>().TakeDamage(atkValue);
+            audio.PlayOneShot(SoundManager.Instance.monsterAttack);
         }
     }
 

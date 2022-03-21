@@ -10,6 +10,8 @@ public class TowerButtons : MonoBehaviour
     public GameObject tower;
     public int towerCost;
     public Text costText;
+    public Sprite[] buttons;
+    public Image buttonImage;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +30,7 @@ public class TowerButtons : MonoBehaviour
     {
         if (towerCost < GameManager.Instance.goldAmount)
         {
+            Camera.main.gameObject.GetComponent<AudioSource>().PlayOneShot(SoundManager.Instance.pickUpTurret);
             GameObject t = Instantiate(tower);
             t.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
             t.GetComponent<Tower>().isFollowingMouse = true;
@@ -56,6 +59,7 @@ public class TowerButtons : MonoBehaviour
 
     public void RandomCost()
     {
+        buttonImage.sprite = buttons[Random.Range(0, buttons.Length)];
         towerCost = Random.Range(1, 12);
         costText.text = towerCost.ToString();
     }

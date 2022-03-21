@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
     public int goldAmount;
     public int playerLevel;
 
+    public int turretsTaken;
+    public int turretAvailable;
+
     public float dps;
 
 
@@ -34,6 +37,8 @@ public class GameManager : MonoBehaviour
     public void LevelUp()
     {
         playerLevel += 1;
+        turretAvailable += 1;
+        GameCanvas.Instance.UpdateTurrets();
         GameCanvas.Instance.UpdateLevel();
     }
 

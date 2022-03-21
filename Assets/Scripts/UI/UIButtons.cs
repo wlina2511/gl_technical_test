@@ -26,6 +26,8 @@ public class UIButtons : MonoBehaviour
     {
         if (GameManager.Instance.refreshCost < GameManager.Instance.goldAmount)
         {
+            Camera.main.gameObject.GetComponent<AudioSource>().PlayOneShot(SoundManager.Instance.refresh);
+
             GameManager.Instance.UpdateGold(-GameManager.Instance.refreshCost);
             foreach (TowerButtons t in GameManager.Instance.towerButtons)
             {
@@ -38,6 +40,8 @@ public class UIButtons : MonoBehaviour
     {
         if (GameManager.Instance.levelUpCost < GameManager.Instance.goldAmount)
         {
+            Camera.main.gameObject.GetComponent<AudioSource>().PlayOneShot(SoundManager.Instance.levelUp);
+
             GameManager.Instance.UpdateGold(-GameManager.Instance.levelUpCost);
             GameManager.Instance.LevelUp();
             GameManager.Instance.levelUpCost += 2;

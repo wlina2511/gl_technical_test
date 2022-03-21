@@ -15,6 +15,8 @@ public class Castle : MonoBehaviour
 
     public Animator anim;
 
+    public AudioSource audio;
+
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +44,7 @@ public class Castle : MonoBehaviour
         healthText.text = currentHealth.ToString();
 
         anim.SetTrigger("Damage");
+        audio.PlayOneShot(SoundManager.Instance.castleDmg);
 
         if (amount > currentHealth)
         {

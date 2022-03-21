@@ -26,6 +26,8 @@ public class Tower : MonoBehaviour {
 
     public int cost;
 
+    public AudioSource audio;
+
     
 
     void Start()
@@ -79,19 +81,11 @@ public class Tower : MonoBehaviour {
                 // Do something with the object that was hit by the raycast.
                 //this.transform.position = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, 0, Camera.main.ScreenToWorldPoint(Input.mousePosition).z);
                 transform.position = hit.point;
-                if (Input.GetMouseButton(0))
+                if (Input.GetMouseButtonDown(0))
                 {
                     if (hit.transform.tag.Equals("Slot"))
                     {
-
-                        transform.position = hit.transform.position;
-                        slot = hit.transform.gameObject.GetComponent<Slot>();
-                        slot.isUsed = true;
-                        slot.tower = this;
-                        transform.parent = slot.transform;
-                        isFollowingMouse = false;
-                        GetComponent<BoxCollider>().enabled = true;
-
+                        PlaceTurret(hit);
                         foreach (GameObject g in GameManager.Instance.slots)
                         {
                             g.GetComponent<MeshRenderer>().material.color = Color.gray;
@@ -121,7 +115,7 @@ public class Tower : MonoBehaviour {
 
 	IEnumerator Shoot()
 	{
-		isShoot = true;
+        isShoot = true;
 		yield return new WaitForSeconds(shootDelay);
 
 
@@ -130,6 +124,7 @@ public class Tower : MonoBehaviour {
             GameObject b = GameObject.Instantiate(bullet, shootElement.position, Quaternion.identity) as GameObject;
             b.GetComponent<TowerBullet>().target = target;
             b.GetComponent<TowerBullet>().twr = this;
+            audio.PlayOneShot(SoundManager.Instance.turretShoot);
           
         }
 
@@ -141,12 +136,27 @@ public class Tower : MonoBehaviour {
     {
         //Material mat = defaultMat;
         //mat.color = Color.red;
+        audio.PlayOneShot(SoundManager.Instance.buildTurret);
         transform.localScale *= 1.2f;
         dmg += 3;
         foreach(MeshRenderer m in transform.GetChild(0).GetComponentsInChildren<MeshRenderer>())
         {
             m.material.color = Color.red;
         }
+    }
+
+    public void PlaceTurret(RaycastHit hit)
+    {
+        audio.PlayOneShot(SoundManager.Instance.buildTurret);
+        transform.position = hit.transform.position;
+        slot = hit.transform.gameObject.GetComponent<Slot>();
+        slot.isUsed = true;
+        slot.tower = this;
+        transform.parent = slot.transform;
+        isFollowingMouse = false;
+        GetComponent<BoxCollider>().enabled = true;
+        GameCanvas.Instance.UpdateTurretsTaken();
+        GameManager.Instance.turretsTaken += 1;
     }
               
 

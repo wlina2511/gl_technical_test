@@ -40,6 +40,7 @@ public class WaveManager : MonoBehaviour
         if(waveCurrentNumber < waveTotalNumber)
         {
             waveCurrentNumber += 1;
+            StartCoroutine(GameCanvas.Instance.PopText(GameCanvas.Instance.waveText, 0.25f));
             CreateWave();
         }
     }
@@ -61,6 +62,7 @@ public class WaveManager : MonoBehaviour
         currentNumberOfMonster += amount;
         if(currentNumberOfMonster <= 0)
         {
+            Camera.main.gameObject.GetComponent<AudioSource>().PlayOneShot(SoundManager.Instance.win);
             NextWave();
             UpdateWave();
         }
