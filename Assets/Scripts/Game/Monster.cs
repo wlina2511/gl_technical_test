@@ -80,6 +80,7 @@ public class Monster : MonoBehaviour
         audio.PlayOneShot(SoundManager.Instance.monsterDeath);
         StartCoroutine(DieCoroutine());
         monsterTarget.tag = "Dead";
+        GameManager.Instance.UpdateGold(level);
         WaveManager.Instance.UpdateMonsterNumber(-1);
     }
 

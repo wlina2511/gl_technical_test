@@ -42,6 +42,7 @@ public class Spawner : MonoBehaviour
 
     public IEnumerator SpawnWave(int numberToSpawn)
     {
+        yield return new WaitForSeconds(2f);
         for (int i = 0; i < numberToSpawn; i++)
         {
             Spawn(spawners[Random.Range(0, spawners.Length)].position, Random.Range(1, maxLevel + 1));

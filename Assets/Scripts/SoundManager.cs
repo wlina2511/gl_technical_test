@@ -25,6 +25,9 @@ public class SoundManager : MonoBehaviour
     public AudioClip buildTurret;
     public AudioClip levelUp;
     public AudioClip refresh;
+    public AudioClip addGold;
+    public AudioClip error;
+
 
 
     private void Awake()
