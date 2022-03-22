@@ -34,6 +34,10 @@ public class UIButtons : MonoBehaviour
                 t.ChangeState(true);
             }
         }
+        else
+        {
+            Camera.main.gameObject.GetComponent<AudioSource>().PlayOneShot(SoundManager.Instance.error);
+        }
     }
 
     public void LevelUp()
@@ -47,7 +51,12 @@ public class UIButtons : MonoBehaviour
             GameManager.Instance.levelUpCost += 2;
             levelUpText.text = GameManager.Instance.levelUpCost.ToString();
         }
-        
+        else
+        {
+            Camera.main.gameObject.GetComponent<AudioSource>().PlayOneShot(SoundManager.Instance.error);
+
+        }
+
 
     }
 }

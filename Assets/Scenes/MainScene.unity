@@ -4120,8 +4120,8 @@ MonoBehaviour:
   buildTurret: {fileID: 8300000, guid: 1ed5afcd08ea5aa418f056025252478c, type: 3}
   levelUp: {fileID: 8300000, guid: 8d969232b4c08624fa971b04a1716cd1, type: 3}
   refresh: {fileID: 8300000, guid: 6fbaf166156c78f4da1a9f5de6ffbeee, type: 3}
-  addGold: {fileID: 0}
-  error: {fileID: 0}
+  addGold: {fileID: 8300000, guid: 60d6ea32e2bb0734b85c508f60074175, type: 3}
+  error: {fileID: 8300000, guid: c5c8919f485f79a47bf01d4f70092412, type: 3}
 --- !u!1 &1092824346
 GameObject:
   m_ObjectHideFlags: 0

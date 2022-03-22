@@ -9,6 +9,7 @@ public class Monster : MonoBehaviour
     public GameObject target, monsterTarget;
     public float maxHealth, currentHealth, atkSpeed, moveSpeed;
     public int level, atkValue;
+    public bool isDead;
 
     public Slider healthBar;
 
@@ -69,7 +70,7 @@ public class Monster : MonoBehaviour
         currentHealth -= amount;
         healthBar.value = currentHealth;
 
-        if (amount > currentHealth)
+        if (amount > currentHealth && !isDead)
         {
             Die();
         }
@@ -77,6 +78,7 @@ public class Monster : MonoBehaviour
 
     public void Die()
     {
+        isDead = true;
         audio.PlayOneShot(SoundManager.Instance.monsterDeath);
         StartCoroutine(DieCoroutine());
         monsterTarget.tag = "Dead";
@@ -116,6 +118,7 @@ public class Monster : MonoBehaviour
         healthBar.gameObject.SetActive(false);
         anim.SetBool("Death", true);
         yield return new WaitForSeconds(1.5f);
+        audio.PlayOneShot(SoundManager.Instance.addGold);
         StartCoroutine(LerpPosition(this.transform.position - new Vector3(0,3,0), 1.0f));
     }
 

@@ -28,7 +28,7 @@ public class TowerButtons : MonoBehaviour
 
     public void AddTower()
     {
-        if (towerCost < GameManager.Instance.goldAmount)
+        if (towerCost <= GameManager.Instance.goldAmount)
         {
             Camera.main.gameObject.GetComponent<AudioSource>().PlayOneShot(SoundManager.Instance.pickUpTurret);
             GameObject t = Instantiate(tower);
@@ -47,8 +47,12 @@ public class TowerButtons : MonoBehaviour
             
             ChangeState(false);
         }
-        
-        
+        else
+        {
+            Camera.main.gameObject.GetComponent<AudioSource>().PlayOneShot(SoundManager.Instance.error);
+        }
+
+
     }
 
     public void ChangeState(bool state)
