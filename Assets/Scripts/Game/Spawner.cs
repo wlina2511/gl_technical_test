@@ -45,7 +45,7 @@ public class Spawner : MonoBehaviour
         yield return new WaitForSeconds(2f);
         for (int i = 0; i < numberToSpawn; i++)
         {
-            Spawn(spawners[Random.Range(0, spawners.Length)].position, Random.Range(1, maxLevel + 1));
+            Spawn(spawners[Random.Range(0, spawners.Length)].position, 4);
             yield return new WaitForSeconds(timeBetweenSpawn);
         }
     }

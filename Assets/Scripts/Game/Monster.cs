@@ -45,7 +45,7 @@ public class Monster : MonoBehaviour
 
         if (level > 3)
         {
-            renderer.material.color = Color.blue;
+           // renderer.material.color = Color.blue;
         }
 
 

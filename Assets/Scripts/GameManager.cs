@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
 
     public float dps;
 
+    public GameObject fence;
+
 
     public int refreshCost, levelUpCost;
 
@@ -31,7 +33,17 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            GameObject[] monsters = GameObject.FindGameObjectsWithTag("Monster");
+            foreach(GameObject m in monsters)
+            {
+                m.GetComponent<Monster>().anim.SetBool("Victory", true);
+                m.GetComponent<Monster>().moveSpeed = 0;
+                
+            }
+            fence.gameObject.SetActive(true);
+        }
     }
 
     public void LevelUp()

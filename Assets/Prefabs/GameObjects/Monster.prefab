@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 3232350625521266883}
   m_Layer: 0
   m_Name: Monster
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,6 +120,7 @@ MonoBehaviour:
   moveSpeed: 0
   level: 1
   atkValue: 0
+  isDead: 0
   healthBar: {fileID: 1031689430336227545}
   renderer: {fileID: 7138595004842479252}
   anim: {fileID: 7182132871967868570}
@@ -274,15 +275,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 820829119776499876, guid: e5f7c255379730b4d90ba45dcb0a6c11,
+    - target: {fileID: 387036873211529729, guid: e5f7c255379730b4d90ba45dcb0a6c11,
         type: 3}
-      propertyPath: m_AnchorMax.x
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 820829119776499876, guid: e5f7c255379730b4d90ba45dcb0a6c11,
         type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 820829119776499876, guid: e5f7c255379730b4d90ba45dcb0a6c11,
+        type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3613102241783060086, guid: e5f7c255379730b4d90ba45dcb0a6c11,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6313798268513453600, guid: e5f7c255379730b4d90ba45dcb0a6c11,
         type: 3}
